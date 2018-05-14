@@ -1,10 +1,10 @@
 """
 Base settings to build other settings files upon.
 """
-
+import json
 import environ
-
-ROOT_DIR = environ.Path(__file__) - 3  # (pystagram/config/settings/base.py - 3 = pystagram/)
+# (pystagram/config/settings/base.py - 3 = pystagram/)
+ROOT_DIR = environ.Path(__file__) - 3
 APPS_DIR = ROOT_DIR.path('pystagram')
 
 env = environ.Env()
@@ -13,6 +13,10 @@ READ_DOT_ENV_FILE = env.bool('DJANGO_READ_DOT_ENV_FILE', default=False)
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
     env.read_env(str(ROOT_DIR.path('.env')))
+
+# ENV loads
+with open(str(ROOT_DIR.path('.envs/base.env.json'))) as read_file:
+    ENV = json.load(read_file)
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -39,8 +43,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres://localhost/pystagram'),
+   'default': ENV.get('DATABASE')
 }
+
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # URLS
@@ -71,6 +76,7 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'pystagram.users.apps.UsersConfig',
+    'pystagram.images.apps.ImagesConfig'
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -111,16 +117,30 @@ PASSWORD_HASHERS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django'
+                '.contrib'
+                '.auth.password_validation'
+                '.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django'
+                '.contrib'
+                '.auth'
+                '.password_validation'
+                '.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django'
+                '.contrib'
+                '.auth.password_validation'
+                '.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django'
+                '.contrib'
+                '.auth'
+                '.password_validation'
+                '.NumericPasswordValidator',
     },
 ]
 
@@ -207,7 +227,9 @@ FIXTURE_DIRS = (
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_BACKEND = env(
+    'DJANGO_EMAIL_BACKEND',
+    default='django.core.mail.backends.smtp.EmailBackend')
 
 # ADMIN
 # ------------------------------------------------------------------------------
@@ -223,7 +245,10 @@ MANAGERS = ADMINS
 
 # django-allauth
 # ------------------------------------------------------------------------------
-ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
+ACCOUNT_ALLOW_REGISTRATION = env.bool(
+    'DJANGO_ACCOUNT_ALLOW_REGISTRATION',
+    True
+)
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
