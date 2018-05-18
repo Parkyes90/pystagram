@@ -37,7 +37,12 @@ class MyUserAdmin(AuthUserAdmin):
     fieldsets = (
                     (
                         "User Profile", {
-                            "fields": ("name", "followers", "following")
+                            "fields": (
+                                "name",
+                                "followers",
+                                "following",
+                                "profile_image"
+                            )
                         }
                     ),
                 ) + AuthUserAdmin.fieldsets

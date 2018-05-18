@@ -263,3 +263,9 @@ SOCIALACCOUNT_ADAPTER = 'pystagram.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+# # rest setting
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [],
+#     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+# }

@@ -6,7 +6,9 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
 urlpatterns = [
-    url(r"^$", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    url(r"^$", TemplateView.as_view(
+        template_name="pages/home.html"), name="home"
+        ),
     url(
         r"^about/$",
         TemplateView.as_view(template_name="pages/about.html"),
@@ -15,10 +17,8 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     url(settings.ADMIN_URL, admin.site.urls),
     # User management
-    url(
-        r"^users/",
-        include("pystagram.users.urls", namespace="users"),
-    ),
+    url(r"^users/", include("pystagram.users.urls", namespace="users")),
+    url(r"^images/", include("pystagram.images.urls", namespace="images")),
     url(r"^accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(

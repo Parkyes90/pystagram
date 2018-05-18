@@ -19,35 +19,55 @@ class Image(TimeStampedModel):
     creator = models.ForeignKey(
         user_model.User,
         on_delete=models.CASCADE,
-        null=True
+        null=True,
+        related_name='images'
     )
+
+    @property
+    def like_count(self):
+        return self.likes.all().count()
 
     def __str__(self):
         return "{location} - {caption}".format(
             location=self.location, caption=self.caption
         )
 
+    class Meta:
+        ordering = ['-created_at']
 
-class CommonForeignKey(TimeStampedModel):
+
+class Comment(TimeStampedModel):
     creator = models.ForeignKey(
         user_model.User,
         on_delete=models.CASCADE,
         null=True
     )
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, null=True)
+    image = models.ForeignKey(
+        Image,
+        on_delete=models.CASCADE,
+        related_name="comments",
+        null=True
+    )
 
-    class Meta:
-        abstract = True
-
-
-class Comment(CommonForeignKey):
     message = models.TextField()
 
     def __str__(self):
         return self.message
 
 
-class Like(CommonForeignKey):
+class Like(TimeStampedModel):
+    creator = models.ForeignKey(
+        user_model.User,
+        on_delete=models.CASCADE,
+        null=True
+    )
+    image = models.ForeignKey(
+        Image,
+        on_delete=models.CASCADE,
+        related_name="likes",
+        null=True
+    )
+
     def __str__(self):
         return '{username} - {caption}'.format(
             username=self.creator.username, caption=self.image.caption
