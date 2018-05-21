@@ -73,10 +73,12 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'taggit',
 ]
 LOCAL_APPS = [
     'pystagram.users.apps.UsersConfig',
-    'pystagram.images.apps.ImagesConfig'
+    'pystagram.images.apps.ImagesConfig',
+    'pystagram.notifications.apps.NotificationsConfig',
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -269,3 +271,7 @@ SOCIALACCOUNT_ADAPTER = 'pystagram.users.adapters.SocialAccountAdapter'
 #     'DEFAULT_PERMISSION_CLASSES': [],
 #     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 # }
+
+# Your common stuff: Below this line define 3rd party library settings
+
+TAGGIT_CASE_INSENSITIVE = True

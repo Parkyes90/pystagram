@@ -1,4 +1,7 @@
 from django.contrib.auth.models import models
+
+from taggit.managers import TaggableManager
+
 from pystagram.users import models as user_model
 
 # Create your models here.
@@ -22,10 +25,15 @@ class Image(TimeStampedModel):
         null=True,
         related_name='images'
     )
+    tags = TaggableManager()
 
     @property
     def like_count(self):
         return self.likes.all().count()
+
+    @property
+    def comment_count(self):
+        return self.comments.all().count()
 
     def __str__(self):
         return "{location} - {caption}".format(
