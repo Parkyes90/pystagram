@@ -73,7 +73,11 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'rest_framework.authtoken',
     'taggit',
+    'taggit_serializer',
+    'rest_auth',
+    'rest_auth.registration'
 ]
 LOCAL_APPS = [
     'pystagram.users.apps.UsersConfig',
@@ -100,10 +104,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = 'users.User'
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = 'users:redirect'
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = 'account_login'
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -254,24 +254,28 @@ ACCOUNT_ALLOW_REGISTRATION = env.bool(
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = None
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_ADAPTER = 'pystagram.users.adapters.AccountAdapter'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = 'pystagram.users.adapters.SocialAccountAdapter'
 
-
-# Your stuff...
-# ------------------------------------------------------------------------------
-
-# # rest setting
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': [],
-#     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
-# }
-
 # Your common stuff: Below this line define 3rd party library settings
 
 TAGGIT_CASE_INSENSITIVE = True
+
+# rest setting
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+
+# REST_AUTH SETTING
+REST_USE_JWT = True
+ACCOUNT_LOGOUT_ON_GET = True

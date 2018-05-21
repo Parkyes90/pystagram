@@ -12,12 +12,29 @@ class Notification(TimeStampedModel):
     )
 
     creator = models.ForeignKey(
-        User, related_name='creator', on_delete=models.CASCADE
+        User,
+        related_name='creator',
+        on_delete=models.CASCADE
     )
     to = models.ForeignKey(
-        User, related_name='to', on_delete=models.CASCADE
+        User,
+        related_name='to',
+        on_delete=models.CASCADE
+    )
+    image = models.ForeignKey(
+        Image,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
     )
     notification_type = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    image = models.ForeignKey(
-        Image, null=True, blank=True, on_delete=models.CASCADE
-    )
+    comment = models.TextField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['created_at']
+
+    def __str__(self):
+        return 'From: {creator} - To: {to}'.format(
+            creator=self.creator,
+            to=self.to
+        )
