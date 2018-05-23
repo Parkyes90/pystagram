@@ -3,6 +3,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views import defaults as default_views
+from pystagram import views
 
 from rest_framework_jwt.views import obtain_jwt_token
 
@@ -40,6 +41,10 @@ urlpatterns = [
         regex=r"^accounts/",
         view=include("allauth.urls")
     ),
+    url(
+        regex=r"^",
+        view=views.ReactAppView.as_view()
+    )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
