@@ -1,3 +1,5 @@
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -178,3 +180,7 @@ class ChangePassword(APIView):
         user.save()
 
         return Response(status=status.HTTP_200_OK)
+
+
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
