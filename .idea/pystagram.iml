@@ -13,7 +13,11 @@
     </facet>
   </component>
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/client" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/pystagram" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/client/src" isTestSource="false" />
+    </content>
     <orderEntry type="jdk" jdkName="Python 3.6 (pystagram) (local)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="@types/expo" level="application" />
@@ -22,6 +26,11 @@
     <orderEntry type="library" name="@types/node" level="application" />
     <orderEntry type="library" name="@types/react" level="application" />
     <orderEntry type="library" name="@types/webpack" level="application" />
+    <orderEntry type="library" name="@types/react-router-dom" level="application" />
+    <orderEntry type="library" name="@types/react-router" level="application" />
+    <orderEntry type="library" name="@types/react-redux" level="application" />
+    <orderEntry type="library" name="@types/react-router-redux" level="application" />
+    <orderEntry type="library" name="@types/react-dom" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
