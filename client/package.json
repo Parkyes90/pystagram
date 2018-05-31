@@ -44,7 +44,9 @@
     "reactotron-react-js": "^2.0.0-beta.3",
     "reactotron-redux": "^2.0.0-beta.3",
     "redux": "^4.0.0",
+    "redux-i18n": "^1.5.13",
     "redux-thunk": "^2.2.0",
+    "reset-css": "^3.0.0",
     "resolve": "1.6.0",
     "sass-loader": "^7.0.1",
     "style-loader": "0.19.0",
@@ -68,6 +70,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6"
   }
 }

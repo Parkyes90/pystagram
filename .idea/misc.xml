@@ -4,4 +4,7 @@
     <option name="languageLevel" value="JSX" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 (pystagram) (local)" project-jdk-type="Python SDK" />
+  <component name="WebPackConfiguration">
+    <option name="path" value="$PROJECT_DIR$/client/config/webpack.config.dev.js" />
+  </component>
 </project>

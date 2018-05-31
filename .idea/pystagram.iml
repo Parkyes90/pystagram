@@ -31,6 +31,8 @@
     <orderEntry type="library" name="@types/react-redux" level="application" />
     <orderEntry type="library" name="@types/react-router-redux" level="application" />
     <orderEntry type="library" name="@types/react-dom" level="application" />
+    <orderEntry type="library" name="@types/react-redux-i18n" level="application" />
+    <orderEntry type="library" name="@types/redux-devtools" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
