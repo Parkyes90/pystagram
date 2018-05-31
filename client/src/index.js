@@ -5,7 +5,6 @@ import { ConnectedRouter } from "react-router-redux";
 import store, { history } from "redux/configureStore";
 import "index.scss";
 import App from "components/App/index";
-import "ReactotronConfig";
 import I18n from "redux-i18n";
 import { translations } from "translations";
 
