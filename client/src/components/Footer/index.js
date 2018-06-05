@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./styles.scss";
 
 const Footer = (props, context) => (
@@ -6,16 +7,16 @@ const Footer = (props, context) => (
       <div className={styles.column}>
         <nav className={styles.nav}>
           <ul className={styles.list}>
-            <li className={styles["list-item"]}>About Us</li>
-            <li className={styles["list-item"]}>Support</li>
-            <li className={styles["list-item"]}>Blog</li>
-            <li className={styles["list-item"]}>Press</li>
-            <li className={styles["list-item"]}>API</li>
-            <li className={styles["list-item"]}>Jobs</li>
-            <li className={styles["list-item"]}>Privacy</li>
-            <li className={styles["list-item"]}>Terms</li>
-            <li className={styles["list-item"]}>Directory</li>
-            <li className={styles["list-item"]}>Language</li>
+            <li className={styles["list-item"]}>{context.t("About Us")}</li>
+            <li className={styles["list-item"]}>{context.t("Support")}</li>
+            <li className={styles["list-item"]}>{context.t("Blog")}</li>
+            <li className={styles["list-item"]}>{context.t("Press")}</li>
+            <li className={styles["list-item"]}>{context.t("API")}</li>
+            <li className={styles["list-item"]}>{context.t("Jobs")}</li>
+            <li className={styles["list-item"]}>{context.t("Privacy")}</li>
+            <li className={styles["list-item"]}>{context.t("Terms")}</li>
+            <li className={styles["list-item"]}>{context.t("Directory")}</li>
+            <li className={styles["list-item"]}>{context.t("Language")}</li>
           </ul>
         </nav>
       </div>
@@ -24,5 +25,10 @@ const Footer = (props, context) => (
       </div>
     </footer>
 );
+
+// noinspection JSUnresolvedVariable
+Footer.contextTypes = {
+  t: PropTypes.func.isRequired
+};
 
 export default Footer;
