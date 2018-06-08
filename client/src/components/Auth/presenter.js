@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./styles.scss";
-import {LoginForm, SignupForm} from "components/AuthForms";
+import SignupForm from "components/SignupForm";
+import LoginForm from "components/LoginForm";
 
 // noinspection JSUnresolvedVariable
 const Auth = (props, context) => (

@@ -1,5 +1,5 @@
 //noinspection CssUnknownTarget
-@import "../../config/variables";
+@import "../config/variables";
 
 .form-component {
   margin-top: 5px;
@@ -28,6 +28,10 @@
   }
   .button {
     @include blueButton();
+    i {
+      font-size: 18px;
+      margin-right: 5px;
+    }
     svg  {
       margin-right: 10px;
     }
@@ -60,13 +64,18 @@
     }
   }
   .facebook-link {
-    display: flex;
-    align-items: center;
     color: #385185;
     justify-content: center;
     margin-bottom: 25px;
+    background-color: white;
+    font-size: $normal_font_size;
+    border: 0;
     svg {
       margin-right: 5px;
+    }
+    &:focus,
+    &:active {
+      outline: none;
     }
   }
   .forgot-link {

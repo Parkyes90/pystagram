@@ -286,3 +286,9 @@ ACCOUNT_LOGOUT_ON_GET = True
 
 # django cors header setting
 CORS_ORIGIN_ALLOW_ALL = True
+
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+JWT_AUTH = {
+    'JWT_VERIFY_EXPIRATION': False
+}
