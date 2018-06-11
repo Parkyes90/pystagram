@@ -43,7 +43,8 @@ class MyUserAdmin(AuthUserAdmin):
                                 "following",
                                 "profile_image",
                                 'bio',
-                                'website'
+                                'website',
+                                'gender'
                             )
                         }
                     ),

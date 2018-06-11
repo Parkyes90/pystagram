@@ -3,9 +3,11 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views import defaults as default_views
-from pystagram import views
 
 from rest_framework_jwt.views import obtain_jwt_token
+
+from pystagram import views
+
 
 urlpatterns = [
     url(settings.ADMIN_URL, admin.site.urls),

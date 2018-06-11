@@ -65,6 +65,7 @@
   }
   .facebook-link {
     color: #385185;
+    cursor: pointer;
     justify-content: center;
     margin-bottom: 25px;
     background-color: white;
@@ -79,6 +80,7 @@
     }
   }
   .forgot-link {
+    cursor: pointer;
     font-size: $small-font-size;
     color: $dark-blue;
   }

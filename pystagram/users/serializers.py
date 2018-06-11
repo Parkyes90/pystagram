@@ -1,3 +1,6 @@
+from allauth.account.adapter import get_adapter
+from allauth.account.utils import setup_user_email
+from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
 from . import models
 from pystagram.images.serializers import CountImageSerializer
@@ -35,3 +38,33 @@ class ListUserSerializer(serializers.ModelSerializer):
             'username',
             'name'
         )
+
+
+class SignUpSerializer(RegisterSerializer):
+    def __init__(self):
+        self.cleaned_data = None
+
+    name = serializers.CharField(required=True, write_only=True)
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+    def get_cleaned_data(self):
+        return {
+            'name': self.validated_data.get('name', ''),
+            'username': self.validated_data.get('username', ''),
+            'password1': self.validated_data.get('password1', ''),
+            'email': self.validated_data.get('email', '')
+        }
+
+    def save(self, request):
+        adapter = get_adapter()
+        user = adapter.new_user(request)
+        self.cleaned_data = self.get_cleaned_data()
+        adapter.save_user(request, user, self, )
+        setup_user_email(request, user, [])
+        user.save()
+        return user
