@@ -1,3 +1,5 @@
+from typing import Dict, Any
+
 from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
 from rest_auth.registration.serializers import RegisterSerializer
@@ -38,19 +40,19 @@ class ListUserSerializer(serializers.ModelSerializer):
             'username',
             'name'
         )
-
-
+        
+        
 class SignUpSerializer(RegisterSerializer):
-    def __init__(self):
-        self.cleaned_data = None
 
-    name = serializers.CharField(required=True, write_only=True)
+    cleaned_data: Dict[str, Any]
 
     def update(self, instance, validated_data):
         pass
 
     def create(self, validated_data):
         pass
+
+    name = serializers.CharField(required=True, write_only=True)
 
     def get_cleaned_data(self):
         return {
@@ -64,7 +66,7 @@ class SignUpSerializer(RegisterSerializer):
         adapter = get_adapter()
         user = adapter.new_user(request)
         self.cleaned_data = self.get_cleaned_data()
-        adapter.save_user(request, user, self, )
+        adapter.save_user(request, user, self)
         setup_user_email(request, user, [])
         user.save()
         return user

@@ -16,7 +16,7 @@ const SignupForm = props => (
       textButton="Log in with Facebook"
     />
     <span className={styles.divider}>or</span>
-    <form className={styles.form}>
+    <form className={styles.form}  onSubmit={props.handleSubmit}>
       <input
           type="email"
           placeholder="Email"
@@ -27,11 +27,11 @@ const SignupForm = props => (
       />
       <input
           type="text"
-          placeholder="Full Name"
+          placeholder="name"
           className={styles["text-input"]}
-          value={props.fullnameValue}
+          value={props.nameValue}
           onChange={props.handleInputChange}
-          name="fullname"
+          name="name"
       />
       <input
           type="username"
@@ -53,7 +53,6 @@ const SignupForm = props => (
           type="submit"
           value="Sign up"
           className={styles.button}
-          onSubmit={props.handleSubmit}
       />
     </form>
     <p className={styles.terms}>
@@ -65,7 +64,7 @@ const SignupForm = props => (
 SignupForm.propTypes = {
   usernameValue: PropTypes.string.isRequired,
   passwordValue: PropTypes.string.isRequired,
-  fullnameValue: PropTypes.string.isRequired,
+  nameValue: PropTypes.string.isRequired,
   emailValue: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
