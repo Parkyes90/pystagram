@@ -4,6 +4,7 @@ import {Route, Switch} from "react-router-dom";
 import "./styles.scss";
 import Footer from "components/Footer";
 import Navigation from "components/Navigation";
+import Feed from "components/Feed";
 import Auth from "components/Auth";
 
 const App = props => [
@@ -19,7 +20,7 @@ App.propTypes = {
 
 const PrivateRoutes = props => (
     <Switch>
-      <Route exact path="/" render={() => "feed"} />
+      <Route exact path="/" component={Feed} />
       <Route exact path="/explore" render={() => "explore"} />
     </Switch>
 );

@@ -81,7 +81,7 @@ class UserProfile(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         if found_user.username != user.username:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
         serializer = serializers.UserProfileSerializer(
             found_user,
@@ -158,7 +158,7 @@ class ChangePassword(APIView):
         user = request.user
 
         if user.username != username:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
         current_password = request.data.get('current_password', None)
 

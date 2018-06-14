@@ -3,6 +3,7 @@
 // actions
 
 const SAVE_TOKEN = "SAVE_TOKEN";
+const LOGOUT = "LOGOUT";
 
 // action creators
 
@@ -12,6 +13,13 @@ function saveToken(token) {
     token
   }
 }
+
+function logout() {
+  return {
+    type: LOGOUT
+  };
+}
+
 
 // API actions
 function facebookLogin(access_token) {
@@ -84,7 +92,8 @@ function createAccount(username, password, email, name) {
 
 // initial state
 const initialState = {
-  isLoggedIn: !!localStorage.getItem('jwt')
+  isLoggedIn: !!localStorage.getItem('jwt'),
+  token: localStorage.getItem('jwt')
 };
 
 
@@ -93,6 +102,8 @@ function reducer(state=initialState, action) {
   switch(action.type) {
     case SAVE_TOKEN:
       return applySetToken(state, action);
+    case LOGOUT:
+      return applyLogout(state, action);
     default:
       return state;
   }
@@ -110,13 +121,21 @@ function applySetToken(state, action) {
   };
 }
 
+function applyLogout(state, action) {
+  localStorage.removeItem("jwt");
+  return {
+    isLoggedIn: false
+  }
+}
+
 
 // exports
 
 const actionCreators = {
   facebookLogin,
   usernameLogin,
-  createAccount
+  createAccount,
+  logout
 };
 
 export { actionCreators };

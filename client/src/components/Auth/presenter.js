@@ -6,7 +6,7 @@ import LoginForm from "components/LoginForm";
 // noinspection JSUnresolvedVariable
 const Auth = (props, context) => (
     <main className={styles.auth}>
-      <div className={styles.column}>
+      <div className={styles.column}>1
         <img src={require("images/phone.png")} alt="Checkout our app. Is cool" />
       </div>
       <div className={styles.column}>
