@@ -11,19 +11,25 @@ class Container extends Component {
     feed: PropTypes.array
   };
   componentDidMount() {
-    const { getFeed } = this.props;
-    getFeed();
+   const { getFeed } = this.props;
+    if (!this.props.feed) {
+      getFeed();
+    } else {
+      this.setState({
+        loading: false
+      });
+    }
   }
   componentWillReceiveProps = nextProps => {
     if (nextProps.feed) {
       this.setState({
-        loading: false,
-        feed: nextProps.feed
+        loading: false
       });
     }
   };
   render() {
-    return <Feed {...this.state} />;
+    const { feed } = this.props;
+    return <Feed {...this.state} feed={feed} />;
   }
 }
 

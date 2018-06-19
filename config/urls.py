@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.urls import path
 from django.views import defaults as default_views
 
 # from rest_framework_jwt.views import obtain_jwt_token
@@ -10,6 +11,10 @@ from pystagram import views
 
 
 urlpatterns = [
+    path(
+        route="",
+        view=views.ReactAppView.as_view()
+    ),
     url(settings.ADMIN_URL, admin.site.urls),
     url(
         regex='^rest-auth/',
@@ -42,12 +47,10 @@ urlpatterns = [
     url(
         regex=r"^accounts/",
         view=include("allauth.urls")
-    ),
-    url(
-        regex=r"^",
-        view=views.ReactAppView.as_view()
     )
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
