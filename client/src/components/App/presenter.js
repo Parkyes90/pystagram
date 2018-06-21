@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 import "./styles.scss";
 import Footer from "components/Footer";
 import Navigation from "components/Navigation";
@@ -32,4 +32,4 @@ const PublicRoutes = props => (
     </Switch>
 );
 
-export default App;
+export default withRouter(App);
