@@ -11,7 +11,7 @@ class Container extends Component {
     feed: PropTypes.array
   };
   componentDidMount() {
-   const { getFeed } = this.props;
+    const { getFeed } = this.props;
     if (!this.props.feed) {
       getFeed();
     } else {

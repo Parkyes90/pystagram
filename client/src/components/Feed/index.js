@@ -14,7 +14,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getFeed: () => {
       dispatch(photoActions.getFeed());
     }
-  }
+  };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(Container);
