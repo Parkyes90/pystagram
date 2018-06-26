@@ -195,6 +195,7 @@ function applyAddComment(state, action) {
   return {...state, feed: updatedFeed};
 
 }
+
 // exports
 
 const actionCreators = {
