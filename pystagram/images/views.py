@@ -20,7 +20,6 @@ class Images(APIView):
         image_list = []
 
         for following_user in following_users:
-
             user_images = following_user.images.all()[:2]
 
             for image in user_images:

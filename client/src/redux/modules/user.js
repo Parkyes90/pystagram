@@ -7,6 +7,7 @@ const LOGOUT = "LOGOUT";
 const SET_USER_LIST = "SET_USER_LIST";
 const FOLLOW_USER = "FOLLOW_USER";
 const UN_FOLLOW_USER = "UN_FOLLOW_USER";
+const SET_EXPLORE = "SET_EXPLORE";
 
 // action creators
 
@@ -42,6 +43,13 @@ function setUnFollowUser(userId) {
     type: UN_FOLLOW_USER,
     userId
   }
+}
+
+function setExplore(userList) {
+  return {
+    type: SET_EXPLORE,
+    userList
+  };
 }
 
 // API actions
@@ -175,6 +183,26 @@ function unFollowUser(userId) {
   }
 }
 
+function getExplore() {
+  return (dispatch, getState) => {
+    const { user: { token } } = getState();
+    fetch(`/users/explore/`, {
+      method: "GET",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+
+        return response.json()
+      })
+      .then(json => dispatch(setExplore(json)))
+  }
+}
 
 // initial state
 const initialState = {
@@ -196,6 +224,8 @@ function reducer(state=initialState, action) {
       return applyFollowUser(state, action);
     case UN_FOLLOW_USER:
       return applyUnFollowUser(state, action);
+    case SET_EXPLORE:
+      return applySetExplore(state, action);
     default:
       return state;
   }
@@ -251,6 +281,14 @@ function applyUnFollowUser(state, action) {
   return { ...state, userList: updatedUserList }
 }
 
+
+function applySetExplore(state, action) {
+  const { userList } = action;
+  return {
+    ...state,
+    userList
+  };
+}
 // exports
 
 const actionCreators = {
@@ -260,7 +298,8 @@ const actionCreators = {
   logout,
   getPhotoLikes,
   followUser,
-  unFollowUser
+  unFollowUser,
+  getExplore
 };
 
 export { actionCreators };

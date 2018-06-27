@@ -22,7 +22,6 @@ class FollowUser(APIView):
     def post(self, request, user_id, format=None):
 
         user = request.user
-
         try:
             user_to_follow = models.User.objects.get(id=user_id)
         except models.User.DoesNotExist:
