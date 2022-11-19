@@ -49,7 +49,7 @@
     "reactotron-react-js": "^2.0.0-beta.3",
     "reactotron-redux": "^2.0.0-beta.3",
     "redux": "^4.0.0",
-    "redux-i18n": "^1.5.13",
+    "redux-i18n": "^1.5.25",
     "redux-thunk": "^2.2.0",
     "reset-css": "^3.0.0",
     "resolve": "1.6.0",
