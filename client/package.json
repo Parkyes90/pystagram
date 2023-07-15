@@ -30,7 +30,7 @@
     "global": "^4.3.2",
     "history": "^4.7.2",
     "html-webpack-plugin": "5.5.0",
-    "node-sass": "^7.0.3",
+    "node-sass": "^9.0.0",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-loader": "7.0.1",
