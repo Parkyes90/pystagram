@@ -92,4 +92,4 @@ Unidecode==0.4.21
 uritemplate==3.0.0
 urllib3==1.26.18
 wcwidth==0.1.7
-Werkzeug==3.0.1
+Werkzeug==3.0.3
